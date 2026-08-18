@@ -107,9 +107,6 @@ export default class DehumidifierAccessory extends BaseAccessory<MideaA1Device> 
         minStep: 5,
       });
 
-    this.service.getCharacteristic(this.platform.Characteristic.RotationSpeed).onGet(this.getRotationSpeed.bind(this)).onSet(this.setRotationSpeed.bind(this));
-
-    this.service.getCharacteristic(this.platform.Characteristic.WaterLevel).onGet(this.getWaterLevel.bind(this));
 
     // Temperature sensor
     this.temperatureService = this.accessory.getServiceById(this.platform.Service.TemperatureSensor, temperatureSubtype);
@@ -202,7 +199,7 @@ export default class DehumidifierAccessory extends BaseAccessory<MideaA1Device> 
           updateState = true;
           break;
         case 'fan_speed':
-          this.service.updateCharacteristic(this.platform.Characteristic.RotationSpeed, v as CharacteristicValue);
+          // Hidden from the main HomeKit accessory
           this.fanService?.updateCharacteristic(this.platform.Characteristic.RotationSpeed, v as CharacteristicValue);
           updateState = true;
           break;
@@ -218,7 +215,7 @@ export default class DehumidifierAccessory extends BaseAccessory<MideaA1Device> 
           this.temperatureService?.updateCharacteristic(this.platform.Characteristic.CurrentTemperature, v as CharacteristicValue);
           break;
         case 'tank_level':
-          this.service.updateCharacteristic(this.platform.Characteristic.WaterLevel, v as CharacteristicValue);
+          // Hidden from the main HomeKit accessory
           break;
         case 'pump':
           this.pumpService?.updateCharacteristic(this.platform.Characteristic.On, v as CharacteristicValue);
