@@ -31,7 +31,7 @@
     "watch": "npm run build && npm link && nodemon",
     "build": "rimraf ./dist && tsc && npm run build:ui",
     "build:ui": "rolldown -c rolldown.config.ts",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
     "prepublishOnly": "npm run lint && npm run fmt:check && npm run build",
     "test": "tsx --test test/*.test.js",
     "fmt": "oxfmt",
